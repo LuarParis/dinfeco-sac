@@ -7,9 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body { margin: 0; font-family: 'Roboto', sans-serif; }
-
     header {
-      background-image: url('PORTADADINFECO.png');
+      background-image: url('PORTADA-FERRETERIA.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -21,40 +20,52 @@
       justify-content: center;
       align-items: center;
     }
-
     header h1 {
       font-family: 'Playfair Display', serif;
       font-size: 60px;
       margin: 0;
     }
-
     header p {
       font-size: 20px;
       margin: 10px 0 0;
     }
-
-    nav { background: black; padding: 10px; display: flex; justify-content: center; gap: 20px; }
-    nav a { color: white; text-decoration: none; font-weight: bold; }
-
+    nav {
+      background: black;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
     .catalogo {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 30px;
       padding: 60px;
     }
-
-    .producto { text-align: center; }
-    .producto img { width: 100%; border-radius: 10px; }
-
-    .cantidad {
+    .producto {
+      text-align: center;
+    }
+    .producto img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .producto .cantidad {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
       margin-top: 10px;
     }
-
-    .cantidad button {
+    .producto .cantidad input {
+      width: 50px;
+      text-align: center;
+    }
+    .producto .cantidad button {
       background: white;
       color: black;
       border: 1px solid black;
@@ -63,13 +74,6 @@
       cursor: pointer;
       border-radius: 4px;
     }
-
-    .cantidad input {
-      width: 40px;
-      text-align: center;
-      font-size: 16px;
-    }
-
     .producto button.agregar-carrito {
       padding: 10px 15px;
       background: #111;
@@ -79,7 +83,6 @@
       cursor: pointer;
       margin-top: 10px;
     }
-
     #carrito-lateral {
       position: fixed;
       top: 0;
@@ -95,16 +98,9 @@
       transition: transform 0.3s ease-in-out;
       z-index: 1000;
     }
-
     #carrito-lateral.abierto {
       transform: translateX(0);
     }
-
-    #carrito-lateral h3 {
-      text-align: center;
-      margin-top: 0;
-    }
-
     #pestana-carrito {
       position: fixed;
       top: 50%;
@@ -120,38 +116,12 @@
       border-radius: 8px 0 0 8px;
       z-index: 1001;
     }
-
-    #boton-whatsapp {
-      background-color: #25D366;
-      color: white;
-      font-weight: bold;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-      margin-top: 10px;
-    }
-
-    #boton-whatsapp:hover { background-color: #1ebe5d; }
-    #boton-whatsapp img { width: 20px; height: 20px; }
-
-    .cantidad-texto {
-      font-size: 14px;
-      color: #555;
-      margin-top: 4px;
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>DINFECO SAC</h1>
-    <p>"Tu socio en construcción"</p>
+    <p>Tu socio en construcción</p>
   </header>
 
   <nav>
@@ -168,10 +138,6 @@
     <h3>Carrito</h3>
     <ul id="lista-carrito"></ul>
     <p><strong>Total:</strong> S/<span id="total">0</span></p>
-    <a id="boton-whatsapp" href="#" onclick="enviarPedidoPorWhatsApp()">
-      <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
-      Enviar por WhatsApp
-    </a>
   </div>
 
   <script>
@@ -195,8 +161,7 @@
           <input type="number" value="0" min="0" onchange="actualizarCantidadManual(this)">
           <button onclick="cambiarCantidad(this, 1)">+</button>
         </div>
-        <div class="cantidad-texto">Cantidad</div>
-        <button class="agregar-carrito" onclick="agregarAlCarrito('${p.nombre}', ${p.precio}, this)">Añadir al carrito</button>
+        <button class="agregar-carrito" onclick="agregarAlCarrito(this)">Añadir al carrito</button>
       `;
       catalogo.appendChild(div);
     });
@@ -216,7 +181,8 @@
         input.value = 0;
       }
 
-      const nombre = input.closest('.producto').querySelector('p').textContent.split(' - ')[0];
+      const productoDiv = input.closest('.producto');
+      const nombre = productoDiv.querySelector('p').textContent.split(' - ')[0];
       const index = carrito.findIndex(p => p.nombre === nombre);
 
       if (index !== -1) {
@@ -225,13 +191,17 @@
         } else {
           carrito[index].cantidad = cantidad;
         }
+        actualizarCarrito();
       }
-
-      actualizarCarrito();
     }
 
-    function agregarAlCarrito(nombre, precio, boton) {
-      const cantidad = parseInt(boton.previousElementSibling.querySelector('input').value);
+    function agregarAlCarrito(boton) {
+      const productoDiv = boton.closest('.producto');
+      const nombre = productoDiv.querySelector('p').textContent.split(' - ')[0];
+      const precioTexto = productoDiv.querySelector('p').textContent.split('S/')[1];
+      const precio = parseFloat(precioTexto);
+      const cantidad = parseInt(productoDiv.querySelector('input').value);
+
       const index = carrito.findIndex(p => p.nombre === nombre);
 
       if (cantidad === 0) {
@@ -278,23 +248,6 @@
 
     function alternarCarrito() {
       document.getElementById('carrito-lateral').classList.toggle('abierto');
-    }
-
-    function enviarPedidoPorWhatsApp() {
-      if (carrito.length === 0) {
-        alert('Tu carrito está vacío.');
-        return;
-      }
-
-      let mensaje = 'Hola, quiero hacer un pedido de:\n';
-      carrito.forEach(p => {
-        mensaje += `- ${p.nombre} x${p.cantidad} (S/${p.precio})\n`;
-      });
-
-      const total = carrito.reduce((sum, p) => sum + (p.precio * p.cantidad), 0);
-      mensaje += `\nTotal: S/${total.toFixed(2)}`;
-
-      window.location.href = `https://wa.me/51932463447?text=${encodeURIComponent(mensaje)}`;
     }
   </script>
 </body>
