@@ -9,7 +9,7 @@
     body { margin: 0; font-family: 'Roboto', sans-serif; }
 
     header {
-      background-image: url('portada-ferreteria.jpg'); /* Usa la misma portada del index */
+      background-image: url('PORTADADINFECO.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -33,20 +33,8 @@
       margin: 10px 0 0;
     }
 
-    nav {
-      background: black;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    nav { background: black; padding: 10px; display: flex; justify-content: center; gap: 20px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
 
     .catalogo {
       display: grid;
@@ -55,16 +43,10 @@
       padding: 60px;
     }
 
-    .producto {
-      text-align: center;
-    }
+    .producto { text-align: center; }
+    .producto img { width: 100%; border-radius: 10px; }
 
-    .producto img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .producto .cantidad {
+    .cantidad {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -72,7 +54,7 @@
       margin-top: 10px;
     }
 
-    .producto .cantidad button {
+    .cantidad button {
       background: white;
       color: black;
       border: 1px solid black;
@@ -80,6 +62,12 @@
       font-size: 16px;
       cursor: pointer;
       border-radius: 4px;
+    }
+
+    .cantidad input {
+      width: 40px;
+      text-align: center;
+      font-size: 16px;
     }
 
     .producto button.agregar-carrito {
@@ -112,6 +100,11 @@
       transform: translateX(0);
     }
 
+    #carrito-lateral h3 {
+      text-align: center;
+      margin-top: 0;
+    }
+
     #pestana-carrito {
       position: fixed;
       top: 50%;
@@ -126,12 +119,6 @@
       text-align: center;
       border-radius: 8px 0 0 8px;
       z-index: 1001;
-    }
-
-    .cantidad-texto {
-      font-size: 14px;
-      color: #555;
-      margin-top: 4px;
     }
 
     #boton-whatsapp {
@@ -154,29 +141,10 @@
     #boton-whatsapp:hover { background-color: #1ebe5d; }
     #boton-whatsapp img { width: 20px; height: 20px; }
 
-    #mensaje-confirmacion {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      color: #111;
-      padding: 40px 60px;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      text-align: center;
-      z-index: 9999;
-      border: 2px solid #000;
-    }
-
-    @media screen and (max-width: 768px) {
-      header h1 { font-size: 40px; }
-      header p { font-size: 16px; }
-      .catalogo { grid-template-columns: 1fr; padding: 20px; }
-      nav { flex-direction: column; gap: 10px; }
+    .cantidad-texto {
+      font-size: 14px;
+      color: #555;
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -206,15 +174,13 @@
     </a>
   </div>
 
-  <div id="mensaje-confirmacion">Gracias por tu preferencia. Regresa pronto</div>
-
   <script>
     const carrito = [];
     const productos = [
-      { nombre: 'Taladro Industrial', precio: 250, imagen: 'taladro.jpg' },
-      { nombre: 'Cemento Portland', precio: 35, imagen: 'cemento.jpg' },
-      { nombre: 'Ladrillo King Kong', precio: 1.2, imagen: 'ladrillo.jpg' },
-      { nombre: 'Pintura Latex 1gal', precio: 70, imagen: 'pintura.jpg' }
+      { nombre: 'Saco de Cemento', precio: 30, imagen: 'cemento.jpg' },
+      { nombre: 'Pintura Blanca 5L', precio: 50, imagen: 'pintura.jpg' },
+      { nombre: 'Martillo Profesional', precio: 25, imagen: 'martillo.jpg' },
+      { nombre: 'Taladro Industrial', precio: 320, imagen: 'taladro.jpg' }
     ];
 
     const catalogo = document.getElementById('catalogo');
@@ -226,7 +192,7 @@
         <p>${p.nombre} - S/${p.precio}</p>
         <div class="cantidad">
           <button onclick="cambiarCantidad(this, -1)">-</button>
-          <span>0</span>
+          <input type="number" value="0" min="0" onchange="actualizarCantidadManual(this)">
           <button onclick="cambiarCantidad(this, 1)">+</button>
         </div>
         <div class="cantidad-texto">Cantidad</div>
@@ -236,11 +202,21 @@
     });
 
     function cambiarCantidad(boton, delta) {
-      const span = boton.parentElement.querySelector('span');
-      let cantidad = Math.max(0, parseInt(span.textContent) + delta);
-      span.textContent = cantidad;
+      const input = boton.parentElement.querySelector('input');
+      let cantidad = parseInt(input.value) || 0;
+      cantidad = Math.max(0, cantidad + delta);
+      input.value = cantidad;
+      actualizarCantidadManual(input);
+    }
 
-      const nombre = boton.closest('.producto').querySelector('p').textContent.split(' - ')[0];
+    function actualizarCantidadManual(input) {
+      let cantidad = parseInt(input.value);
+      if (isNaN(cantidad) || cantidad < 0) {
+        cantidad = 0;
+        input.value = 0;
+      }
+
+      const nombre = input.closest('.producto').querySelector('p').textContent.split(' - ')[0];
       const index = carrito.findIndex(p => p.nombre === nombre);
 
       if (index !== -1) {
@@ -249,19 +225,18 @@
         } else {
           carrito[index].cantidad = cantidad;
         }
-        actualizarCarrito();
       }
+
+      actualizarCarrito();
     }
 
     function agregarAlCarrito(nombre, precio, boton) {
-      const cantidad = parseInt(boton.previousElementSibling.previousElementSibling.querySelector('span').textContent);
+      const cantidad = parseInt(boton.previousElementSibling.querySelector('input').value);
       const index = carrito.findIndex(p => p.nombre === nombre);
 
       if (cantidad === 0) {
-        if (index !== -1) {
-          carrito.splice(index, 1);
-          actualizarCarrito();
-        }
+        if (index !== -1) carrito.splice(index, 1);
+        actualizarCarrito();
         return;
       }
 
@@ -273,14 +248,6 @@
       actualizarCarrito();
     }
 
-    function quitarDelCarrito(nombre) {
-      const index = carrito.findIndex(p => p.nombre === nombre);
-      if (index !== -1) {
-        carrito.splice(index, 1);
-        actualizarCarrito();
-      }
-    }
-
     function actualizarCarrito() {
       const lista = document.getElementById('lista-carrito');
       lista.innerHTML = '';
@@ -290,7 +257,7 @@
         const item = document.createElement('li');
         item.innerHTML = `
           <strong>${p.nombre}</strong><br>
-          <span>Cantidad: ${p.cantidad}</span><br>
+          Cantidad: ${p.cantidad}<br>
           Subtotal: S/${(p.precio * p.cantidad).toFixed(2)}<br>
           <button onclick="quitarDelCarrito('${p.nombre}')" style="margin-top:5px;background:#111;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;">Quitar del carrito</button>
         `;
@@ -301,16 +268,16 @@
       document.getElementById('total').textContent = total.toFixed(2);
     }
 
-    function alternarCarrito() {
-      document.getElementById('carrito-lateral').classList.toggle('abierto');
+    function quitarDelCarrito(nombre) {
+      const index = carrito.findIndex(p => p.nombre === nombre);
+      if (index !== -1) {
+        carrito.splice(index, 1);
+        actualizarCarrito();
+      }
     }
 
-    function mostrarMensaje() {
-      const mensaje = document.getElementById("mensaje-confirmacion");
-      mensaje.style.display = "block";
-      setTimeout(() => {
-        mensaje.style.display = "none";
-      }, 2000);
+    function alternarCarrito() {
+      document.getElementById('carrito-lateral').classList.toggle('abierto');
     }
 
     function enviarPedidoPorWhatsApp() {
@@ -319,24 +286,15 @@
         return;
       }
 
-      mostrarMensaje();
+      let mensaje = 'Hola, quiero hacer un pedido de:\n';
+      carrito.forEach(p => {
+        mensaje += `- ${p.nombre} x${p.cantidad} (S/${p.precio})\n`;
+      });
 
-      setTimeout(() => {
-        const numero = '51932463447';
-        let mensaje = 'Hola, quiero hacer un pedido de:\n';
+      const total = carrito.reduce((sum, p) => sum + (p.precio * p.cantidad), 0);
+      mensaje += `\nTotal: S/${total.toFixed(2)}`;
 
-        carrito.forEach(p => {
-          mensaje += `- ${p.nombre} x${p.cantidad} (S/${p.precio})\n`;
-        });
-
-        const total = carrito.reduce((sum, p) => sum + (p.precio * p.cantidad), 0);
-        mensaje += `\nTotal: S/${total.toFixed(2)}`;
-
-        window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-
-        carrito.length = 0;
-        actualizarCarrito();
-      }, 2000);
+      window.location.href = `https://wa.me/51932463447?text=${encodeURIComponent(mensaje)}`;
     }
   </script>
 </body>
