@@ -9,7 +9,7 @@
     body { margin: 0; font-family: 'Roboto', sans-serif; }
 
     header {
-      background-image: url('https://images.unsplash.com/photo-1581091870622-2fe3c81231e9?auto=format&fit=crop&w=1200&q=80');
+      background-image: url('portada-ferreteria.jpg'); /* Usa la misma portada del index */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -39,6 +39,7 @@
       display: flex;
       justify-content: center;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -127,6 +128,12 @@
       z-index: 1001;
     }
 
+    .cantidad-texto {
+      font-size: 14px;
+      color: #555;
+      margin-top: 4px;
+    }
+
     #boton-whatsapp {
       background-color: #25D366;
       color: white;
@@ -144,14 +151,8 @@
       margin-top: 10px;
     }
 
-    #boton-whatsapp:hover {
-      background-color: #1ebe5d;
-    }
-
-    #boton-whatsapp img {
-      width: 20px;
-      height: 20px;
-    }
+    #boton-whatsapp:hover { background-color: #1ebe5d; }
+    #boton-whatsapp img { width: 20px; height: 20px; }
 
     #mensaje-confirmacion {
       display: none;
@@ -171,10 +172,11 @@
       border: 2px solid #000;
     }
 
-    .cantidad-texto {
-      font-size: 14px;
-      color: #555;
-      margin-top: 4px;
+    @media screen and (max-width: 768px) {
+      header h1 { font-size: 40px; }
+      header p { font-size: 16px; }
+      .catalogo { grid-template-columns: 1fr; padding: 20px; }
+      nav { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
@@ -185,10 +187,9 @@
   </header>
 
   <nav>
-    <a href="#">Inicio</a>
-    <a href="#">Productos</a>
-    <a href="#">Ofertas</a>
-    <a href="#">Contáctanos</a>
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Catálogo</a>
+    <a href="contacto.html">Contáctanos</a>
   </nav>
 
   <div class="catalogo" id="catalogo"></div>
@@ -210,12 +211,10 @@
   <script>
     const carrito = [];
     const productos = [
-      { nombre: 'Martillo 16oz', precio: 35, imagen: 'https://via.placeholder.com/300x400?text=Martillo' },
-      { nombre: 'Destornillador Plano', precio: 12, imagen: 'https://via.placeholder.com/300x400?text=Destornillador' },
-      { nombre: 'Taladro 600W', precio: 320, imagen: 'https://via.placeholder.com/300x400?text=Taladro' },
-      { nombre: 'Cinta Métrica 5m', precio: 18, imagen: 'https://via.placeholder.com/300x400?text=Cinta+Métrica' },
-      { nombre: 'Caja de Clavos', precio: 20, imagen: 'https://via.placeholder.com/300x400?text=Clavos' },
-      { nombre: 'Sierra Manual', precio: 45, imagen: 'https://via.placeholder.com/300x400?text=Sierra' }
+      { nombre: 'Taladro Industrial', precio: 250, imagen: 'taladro.jpg' },
+      { nombre: 'Cemento Portland', precio: 35, imagen: 'cemento.jpg' },
+      { nombre: 'Ladrillo King Kong', precio: 1.2, imagen: 'ladrillo.jpg' },
+      { nombre: 'Pintura Latex 1gal', precio: 70, imagen: 'pintura.jpg' }
     ];
 
     const catalogo = document.getElementById('catalogo');
@@ -238,12 +237,12 @@
 
     function cambiarCantidad(boton, delta) {
       const span = boton.parentElement.querySelector('span');
-      let cantidad = parseInt(span.textContent);
-      cantidad = Math.max(0, cantidad + delta);
+      let cantidad = Math.max(0, parseInt(span.textContent) + delta);
       span.textContent = cantidad;
 
       const nombre = boton.closest('.producto').querySelector('p').textContent.split(' - ')[0];
       const index = carrito.findIndex(p => p.nombre === nombre);
+
       if (index !== -1) {
         if (cantidad === 0) {
           carrito.splice(index, 1);
@@ -274,8 +273,12 @@
       actualizarCarrito();
     }
 
-    function alternarCarrito() {
-      document.getElementById('carrito-lateral').classList.toggle('abierto');
+    function quitarDelCarrito(nombre) {
+      const index = carrito.findIndex(p => p.nombre === nombre);
+      if (index !== -1) {
+        carrito.splice(index, 1);
+        actualizarCarrito();
+      }
     }
 
     function actualizarCarrito() {
@@ -298,12 +301,8 @@
       document.getElementById('total').textContent = total.toFixed(2);
     }
 
-    function quitarDelCarrito(nombre) {
-      const index = carrito.findIndex(p => p.nombre === nombre);
-      if (index !== -1) {
-        carrito.splice(index, 1);
-        actualizarCarrito();
-      }
+    function alternarCarrito() {
+      document.getElementById('carrito-lateral').classList.toggle('abierto');
     }
 
     function mostrarMensaje() {
