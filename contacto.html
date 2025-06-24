@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contáctanos | DINFECO SAC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+    header {
+      background-image: url('portada-ferreteria.jpg'); /* misma portada */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 20px;
+      margin: 10px 0 0;
+    }
+
+    nav {
+      background: black;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 32px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    section p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      font-weight: bold;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+    }
+
+    .whatsapp:hover {
+      background-color: #1ebe5d;
+    }
+
+    .whatsapp img {
+      width: 24px;
+      height: 24px;
+    }
+
+    @media screen and (max-width: 768px) {
+      header h1 { font-size: 40px; }
+      header p { font-size: 16px; }
+      section h2 { font-size: 28px; }
+      section p { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DINFECO SAC</h1>
+    <p>"Tu socio en construcción"</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Catálogo</a>
+    <a href="contacto.html">Contáctanos</a>
+  </nav>
+
+  <section>
+    <h2>Contáctanos</h2>
+    <p>¿Tienes preguntas o deseas cotizar algún producto? <br><br>
+       Estamos aquí para ayudarte en tu proyecto de construcción. <br><br>
+       Llámanos o escríbenos directamente por WhatsApp y con gusto te atenderemos.</p>
+    <p><strong>Teléfono:</strong> +51 932 463 447</p>
+    <p><strong>Email:</strong> contacto@dinfeco.com</p>
+  </section>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a class="whatsapp" href="https://wa.me/51932463447" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+    Chatea con nosotros
+  </a>
+</body>
+</html>
