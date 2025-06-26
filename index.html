@@ -9,7 +9,7 @@
     body { margin: 0; font-family: 'Roboto', sans-serif; }
 
     header {
-      background-image: url('portada-ferreteria.jpg'); /* Cambia esta imagen por la de tu portada */
+      background-image: url('portada-ferreteria.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -34,7 +34,7 @@
     }
 
     nav {
-      background: black;
+      background: #003366; /* Azul marino */
       padding: 10px;
       display: flex;
       justify-content: center;
@@ -55,8 +55,22 @@
       margin: auto;
     }
 
+    .marcas {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .marcas img {
+      height: 60px;
+      object-fit: contain;
+    }
+
     footer {
-      background: #111;
+      background: #003366; /* Azul marino */
       color: white;
       text-align: center;
       padding: 20px;
@@ -80,6 +94,16 @@
     <p>
       Somos una ferretería especializada en materiales de construcción, herramientas y soluciones industriales. Nuestro compromiso es acompañarte en cada proyecto, brindándote productos de calidad y atención personalizada.
     </p>
+  </section>
+
+  <section>
+    <h2>Nuestras marcas aliadas</h2>
+    <div class="marcas">
+      <img src="aceros-arequipa.png" alt="Aceros Arequipa">
+      <img src="siderperu.png" alt="Siderperú">
+      <img src="novaceram.png" alt="Novaceram">
+      <img src="progresol.png" alt="Progresol">
+    </div>
   </section>
 
   <footer>
