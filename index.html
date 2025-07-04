@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>DINFECO SAC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
   <style>
@@ -41,22 +41,22 @@
       width: 40px;
       height: 40px;
     }
-    
-header {
-  height: 70vh;
-  width: 100%;
-  background-image: url('portada-ferreteria.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  color: white;
-  padding-top: 60px; /* para dejar espacio al menú fijo */
-}
+
+    header {
+      height: 70vh;
+      width: 100%;
+      background-image: url('portada-ferreteria.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      padding-top: 60px;
+    }
 
     header h1 {
       font-family: 'Playfair Display', serif;
@@ -69,13 +69,55 @@ header {
       margin: 10px 0 0;
     }
 
+    /* ✅ Estilo de la franja con Progresol */
+    .franja-progresol {
+      width: 100%;
+      background-color: #39FF14; /* Verde fosforescente */
+      overflow: hidden;
+      position: relative;
+      padding: 10px 0;
+    }
+
+    .contenido-franja {
+      display: inline-block;
+      white-space: nowrap;
+      animation: correr-rio 15s linear infinite;
+    }
+
+    .contenido-franja span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .logo-franja {
+      height: 24px;
+      vertical-align: middle;
+    }
+
+    @keyframes correr-rio {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
     nav {
-      background: #000000; /* Azul marino */
+      background: #000000;
       padding: 10px;
       display: flex;
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
@@ -121,15 +163,31 @@ header {
     <img src="flotante.png" alt="Bienvenida">
   </div>
 
-  <header>
-  </header>
+  <!-- Portada -->
+  <header></header>
 
+  <!-- ✅ Franja Progresol -->
+  <div class="franja-progresol">
+    <div class="contenido-franja">
+      <span>
+        <img src="progresol.png" alt="Progresol" class="logo-franja">
+        CON EL RESPALDO DE PROGRESOL • 
+        <img src="progresol.png" alt="Progresol" class="logo-franja">
+        CON EL RESPALDO DE PROGRESOL • 
+        <img src="progresol.png" alt="Progresol" class="logo-franja">
+        CON EL RESPALDO DE PROGRESOL • 
+      </span>
+    </div>
+  </div>
+
+  <!-- Menú -->
   <nav>
     <a href="index.html">Inicio</a>
     <a href="catalogo.html">Catálogo</a>
     <a href="contacto.html">Contáctanos</a>
   </nav>
 
+  <!-- Bienvenida -->
   <section>
     <h2>Bienvenido a DINFECO SAC</h2>
     <p>
@@ -137,6 +195,7 @@ header {
     </p>
   </section>
 
+  <!-- Marcas -->
   <section>
     <h2>Nuestras marcas aliadas</h2>
     <div class="marcas">
@@ -165,6 +224,7 @@ header {
     </div>
   </section>
 
+  <!-- Pie de página -->
   <footer>
     <p>© 2025 DINFECO SAC - Todos los derechos reservados.</p>
   </footer>
