@@ -41,20 +41,21 @@
       width: 40px;
       height: 40px;
     }
-
-    header {
-      background-image: url('portada-ferreteria.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      text-align: center;
-      padding: 100px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+    
+header {
+  background-image: url('portada-ferreteria.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000; /* color de fondo de apoyo */
+  height: 100vh; /* ocupa el alto total de la pantalla */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
 
     header h1 {
       font-family: 'Playfair Display', serif;
