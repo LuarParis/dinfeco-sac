@@ -71,10 +71,11 @@
     }
 
     .mapa {
-      margin-top: 40px;
+      margin: 30px auto;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      max-width: 100%;
     }
 
     .whatsapp {
@@ -105,6 +106,18 @@
       height: 24px;
     }
 
+    /* Estilo para el link de Google Maps */
+    .link-maps {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .link-maps:hover {
+      text-decoration: underline;
+    }
+
     @media screen and (max-width: 768px) {
       header h1 { font-size: 40px; }
       header p { font-size: 16px; }
@@ -130,11 +143,6 @@
   <!-- Contenido -->
   <section>
     <h2>Contáctanos</h2>
-    <p>¿Tienes preguntas o deseas cotizar algún producto? <br><br>
-       Estamos aquí para ayudarte en tu proyecto de construcción. <br><br>
-       Llámanos o escríbenos directamente por WhatsApp y con gusto te atenderemos.</p>
-    <p><strong>Teléfono:</strong> +51 96 2841 803</p>
-    <p><strong>Email:</strong> dinfecosacprogresol@gmail.com</p>
 
     <!-- Mapa de ubicación -->
     <div class="mapa">
@@ -146,10 +154,17 @@
 
     <!-- Link directo de Google Maps -->
     <p>
-      <a href="https://maps.app.goo.gl/rxwGyh4BiNrwicwx9" target="_blank">
+      <a class="link-maps" href="https://maps.app.goo.gl/rxwGyh4BiNrwicwx9" target="_blank">
         📍 Ver ubicación en Google Maps
       </a>
     </p>
+
+    <!-- Datos de contacto -->
+    <p><strong>Teléfono:</strong> +51 96 2841 803</p>
+    <p><strong>Email:</strong> dinfecosacprogresol@gmail.com</p>
+    <p>¿Tienes preguntas o deseas cotizar algún producto? <br><br>
+       Estamos aquí para ayudarte en tu proyecto de construcción. <br><br>
+       Llámanos o escríbenos directamente por WhatsApp y con gusto te atenderemos.</p>
   </section>
 
   <!-- Botón flotante de WhatsApp -->
