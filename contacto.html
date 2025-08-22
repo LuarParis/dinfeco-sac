@@ -35,24 +35,39 @@
       margin: 10px 0 0;
     }
 
-    /* Franja verde animada */
-    .franja {
-      background-color: #006400;
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-      padding: 12px 0;
+    /* ✅ Franja Progresol igual al inicio */
+    .franja-progresol {
+      width: 100%;
+      background-color: #39FF14; /* Verde fosforescente */
       overflow: hidden;
-      white-space: nowrap;
+      position: relative;
+      padding: 10px 0;
     }
-    .franja span {
+
+    .contenido-franja {
       display: inline-block;
-      padding-left: 100%;
-      animation: mover 15s linear infinite;
+      white-space: nowrap;
+      animation: correr-rio 30s linear infinite;
     }
-    @keyframes mover {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+
+    .contenido-franja span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .logo-franja {
+      height: 24px;
+      vertical-align: middle;
+    }
+
+    @keyframes correr-rio {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
     }
 
     nav {
@@ -153,9 +168,18 @@
     <p></p>
   </header>
 
-  <!-- Franja verde animada -->
-  <div class="franja">
-    <span>🏗️ DINFECO SAC - Tu ferretería de confianza para proyectos de construcción ⚒️</span>
+  <!-- ✅ Franja Progresol igual al inicio -->
+  <div class="franja-progresol">
+    <div class="contenido-franja">
+      <span>
+        <img src="progresol.png" alt="Progresol" class="logo-franja">
+        CON EL RESPALDO DE PROGRESOL / POR COMPRAS MAYORES A 200 SOLES DELIVERY GRATIS • 
+        <img src="progresol.png" alt="Progresol" class="logo-franja">
+        CON EL RESPALDO DE PROGRESOL / POR COMPRAS MAYORES A 200 SOLES DELIVERY GRATIS • 
+        <img src="progresol.png" alt="Progresol" class="logo-franja">
+        CON EL RESPALDO DE PROGRESOL / POR COMPRAS MAYORES A 200 SOLES DELIVERY GRATIS •
+      </span>
+    </div>
   </div>
 
   <!-- Menú -->
@@ -185,7 +209,7 @@
     </p>
 
     <!-- Datos de contacto -->
-    <p><strong>Teléfono:</strong> 01 685 7690/+51 96 2841 803</p>
+    <p><strong>Teléfono:</strong> 01 685 7690 / +51 96 2841 803</p>
     <p><strong>Email:</strong> dinfecosacprogresol@gmail.com</p>
     <p>¿Tienes dudas sobre los productos y servicios que brindamos o deseas cotizar algún producto? <br><br>
        Estamos aquí para ayudarte en tu proyecto de construcción. <br><br>
