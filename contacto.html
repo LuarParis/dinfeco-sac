@@ -9,17 +9,19 @@
     body { margin: 0; font-family: 'Roboto', sans-serif; }
 
     header {
-      background-image: url('portada-ferreteria.jpg'); /* misma portada */
+      height: 70vh;
+      width: 100%;
+      background-image: url('portada-ferreteria.jpg'); /* igual que en inicio */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      color: white;
-      text-align: center;
-      padding: 100px 20px;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      padding-top: 60px;
     }
 
     header h1 {
@@ -40,6 +42,9 @@
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
@@ -102,17 +107,20 @@
   </style>
 </head>
 <body>
+  <!-- Portada igual a inicio -->
   <header>
-    <h1></h1>
-    <p></p>
+    <h1>DINFECO SAC</h1>
+    <p>Tu ferretería de confianza</p>
   </header>
 
+  <!-- Menú -->
   <nav>
     <a href="index.html">Inicio</a>
     <a href="catalogo.html">Catálogo</a>
     <a href="contacto.html">Contáctanos</a>
   </nav>
 
+  <!-- Contenido -->
   <section>
     <h2>Contáctanos</h2>
     <p>¿Tienes preguntas o deseas cotizar algún producto? <br><br>
