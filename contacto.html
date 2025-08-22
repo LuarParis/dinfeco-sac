@@ -35,14 +35,26 @@
       margin: 10px 0 0;
     }
 
-    /* Franja verde */
+    /* Franja verde animada */
     .franja-verde {
       background-color: #198754;
       color: white;
-      text-align: center;
-      padding: 15px 10px;
       font-size: 20px;
       font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    .franja-verde p {
+      display: inline-block;
+      padding-left: 100%;
+      animation: mover 15s linear infinite;
+    }
+
+    @keyframes mover {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
     }
 
     nav {
@@ -137,15 +149,15 @@
   </style>
 </head>
 <body>
-  <!-- Portada igual a inicio -->
+  <!-- Portada -->
   <header>
     <h1></h1>
     <p></p>
   </header>
 
-  <!-- Franja verde -->
+  <!-- Franja verde animada -->
   <div class="franja-verde">
-    ¡Construyendo contigo un futuro más sólido!
+    <p>¡Construyendo contigo un futuro más sólido! &nbsp; • &nbsp; DINFECO SAC • &nbsp; ¡Calidad y confianza en cada proyecto!</p>
   </div>
 
   <!-- Menú -->
@@ -175,7 +187,7 @@
     </p>
 
     <!-- Datos de contacto -->
-    <p><strong>Teléfono:</strong> 01 685 7690/+51 96 2841 803</p>
+    <p><strong>Teléfono:</strong> 01 685 7690 / +51 96 2841 803</p>
     <p><strong>Email:</strong> dinfecosacprogresol@gmail.com</p>
     <p>¿Tienes dudas sobre los productos y servicios que brindamos o deseas cotizar algún producto? <br><br>
        Estamos aquí para ayudarte en tu proyecto de construcción. <br><br>
