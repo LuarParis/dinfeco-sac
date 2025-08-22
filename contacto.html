@@ -2,19 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <title>Contáctanos | DINFECO SAC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contáctanos - DINFECO SAC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+    body { margin: 0; font-family: 'Roboto', sans-serif; }
 
-    /* ✅ Portada */
     header {
       height: 70vh;
       width: 100%;
-      background-image: url('portada-ferreteria.jpg'); 
+      background-image: url('portada-ferreteria.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -28,7 +25,8 @@
     }
 
     header h1 {
-      font-size: 50px;
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
       margin: 0;
     }
 
@@ -37,157 +35,167 @@
       margin: 10px 0 0;
     }
 
-    /* ✅ Franja Progresol */
-    .franja-progresol {
-      width: 100%;
-      background-color: #39FF14; /* Verde fosforescente */
-      overflow: hidden;
-      position: relative;
-      padding: 10px 0;
-    }
-
-    .contenido-franja {
-      display: inline-block;
-      white-space: nowrap;
-      animation: correr-rio 30s linear infinite;
-    }
-
-    .contenido-franja span {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 20px;
-      font-weight: bold;
+    /* Franja verde animada */
+    .franja {
+      background-color: #006400;
       color: white;
-      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 20px;
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .franja span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: mover 15s linear infinite;
+    }
+    @keyframes mover {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
     }
 
-    .logo-franja {
-      height: 24px;
-      vertical-align: middle;
-    }
-
-    @keyframes correr-rio {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* ✅ Menú */
     nav {
-      background: #333;
-      padding: 10px 0;
-    }
-
-    nav ul {
-      list-style: none;
+      background: black;
+      padding: 10px;
       display: flex;
       justify-content: center;
-      margin: 0;
-      padding: 0;
+      gap: 20px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    nav ul li {
-      margin: 0 15px;
-    }
-
-    nav ul li a {
+    nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
 
-    /* ✅ Sección Contacto */
     section {
-      padding: 40px;
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
       text-align: center;
     }
 
     section h2 {
-      margin-bottom: 20px;
+      font-size: 32px;
+      font-family: 'Playfair Display', serif;
     }
 
     section p {
       font-size: 18px;
-      margin: 10px 0;
+      line-height: 1.6;
     }
 
-    /* ✅ Mapa */
     .mapa {
-      text-align: center;
-      margin: 40px 0;
+      margin: 30px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      max-width: 100%;
     }
 
-    .mapa iframe {
-      border: 0;
-      width: 90%;
-      max-width: 800px;
-      height: 400px;
-    }
-
-    .mapa a {
-      display: inline-block;
-      margin-top: 10px;
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      font-weight: bold;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
       font-size: 16px;
-      color: black; /* 🔥 Letra negra */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+    }
+
+    .whatsapp:hover {
+      background-color: #1ebe5d;
+    }
+
+    .whatsapp img {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Estilo para el link de Google Maps */
+    .link-maps {
+      color: black;
       text-decoration: none;
       font-weight: bold;
+      font-size: 18px;
     }
 
-    .mapa a:hover {
+    .link-maps:hover {
       text-decoration: underline;
+    }
+
+    @media screen and (max-width: 768px) {
+      header h1 { font-size: 40px; }
+      header p { font-size: 16px; }
+      section h2 { font-size: 28px; }
+      section p { font-size: 16px; }
     }
   </style>
 </head>
 <body>
-  <!-- ✅ Portada -->
+  <!-- Portada -->
   <header>
-    <h1>DINFECO SAC</h1>
-    <p>Tu ferretería de confianza</p>
+    <h1></h1>
+    <p></p>
   </header>
 
-  <!-- ✅ Franja Progresol debajo de la portada -->
-  <div class="franja-progresol">
-    <div class="contenido-franja">
-      <span>
-        <img src="progresol.png" alt="Progresol" class="logo-franja">
-        CON EL RESPALDO DE PROGRESOL / POR COMPRAS MAYORES A 200 SOLES DELIVERY GRATIS • 
-        <img src="progresol.png" alt="Progresol" class="logo-franja">
-        CON EL RESPALDO DE PROGRESOL / POR COMPRAS MAYORES A 200 SOLES DELIVERY GRATIS • 
-        <img src="progresol.png" alt="Progresol" class="logo-franja">
-        CON EL RESPALDO DE PROGRESOL / POR COMPRAS MAYORES A 200 SOLES DELIVERY GRATIS • 
-        <img src="progresol.png" alt="Progresol" class="logo-franja">
-        CON EL RESPALDO DE PROGRESOL / POR COMPRAS MAYORES A 200 SOLES DELIVERY GRATIS • 
-      </span>
-    </div>
+  <!-- Franja verde animada -->
+  <div class="franja">
+    <span>🏗️ DINFECO SAC - Tu ferretería de confianza para proyectos de construcción ⚒️</span>
   </div>
 
-  <!-- ✅ Menú -->
+  <!-- Menú -->
   <nav>
-    <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="productos.html">Productos</a></li>
-      <li><a href="nosotros.html">Nosotros</a></li>
-      <li><a href="contacto.html">Contáctanos</a></li>
-    </ul>
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Catálogo</a>
+    <a href="contacto.html">Contáctanos</a>
   </nav>
 
-  <!-- ✅ Sección de contacto -->
+  <!-- Contenido -->
   <section>
     <h2>Contáctanos</h2>
-    <p>📍 Dirección: Av. Los Constructores 123, Lima</p>
-    <p>📞 Teléfono: 999 888 777</p>
-    <p>📧 Email: contacto@dinfeco.com</p>
+
+    <!-- Mapa de ubicación -->
+    <div class="mapa">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.9599392904113!2d-77.005361716!3d-12.0347971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c52c6c3752d1%3A0x12cc1fdf8897b9ff!2sFerreter%C3%ADa%20Dinfeco!5e0!3m2!1ses-419!2spe!4v1700000000000!5m2!1ses-419!2spe"
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- Link directo de Google Maps -->
+    <p>
+      <a class="link-maps" href="https://maps.app.goo.gl/rxwGyh4BiNrwicwx9" target="_blank">
+        📍 Ver ubicación en Google Maps
+      </a>
+    </p>
+
+    <!-- Datos de contacto -->
+    <p><strong>Teléfono:</strong> 01 685 7690/+51 96 2841 803</p>
+    <p><strong>Email:</strong> dinfecosacprogresol@gmail.com</p>
+    <p>¿Tienes dudas sobre los productos y servicios que brindamos o deseas cotizar algún producto? <br><br>
+       Estamos aquí para ayudarte en tu proyecto de construcción. <br><br>
+       Llámanos o escríbenos directamente por WhatsApp y con gusto te atenderemos.</p>
   </section>
 
-  <!-- ✅ Mapa -->
-  <div class="mapa">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.5552940538606!2d-77.0075!3d-12.0464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c87f3b1f3dfb%3A0x1234567890abcdef!2sDinfeco%20SAC!5e0!3m2!1ses-419!2spe!4v1693000000000!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <br>
-    <a href="https://maps.app.goo.gl/rxwGyh4BiNrwicwx9" target="_blank">Ver en Google Maps</a>
-  </div>
+  <!-- Botón flotante de WhatsApp -->
+  <a class="whatsapp" href="https://wa.me/51932463447" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+    Chatea con nosotros
+  </a>
 </body>
 </html>
